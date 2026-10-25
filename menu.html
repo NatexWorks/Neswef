@@ -89,7 +89,7 @@
    count.textContent=filtered.length;
    countLabel.textContent=filtered.length===1?'item to savour':'thoughtful little favourites';
    const label=categoryButtons.find(b=>b.dataset.category===selectedCategory).querySelector('.category-name').textContent;
-   status.textContent=q?'${filtered.length} results for “'+search.value.trim()+'”':selectedCategory==='all'?'Showing all '+filtered.length+' items':'Showing '+label+' · '+filtered.length+' items';
+   status.textContent=q?filtered.length+' results for “'+search.value.trim()+'”':selectedCategory==='all'?'Showing all '+filtered.length+' items':'Showing '+label+' · '+filtered.length+' items';
    empty.classList.toggle('show',filtered.length===0);
    grid.style.display=filtered.length?'grid':'none';
    categoryButtons.forEach(button=>{
