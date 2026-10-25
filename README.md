@@ -4,14 +4,16 @@ A premium, responsive café website concept built with semantic HTML, custom CSS
 
 ## Preview locally
 
-Open `index.html` in a modern browser. An internet connection is required for Google Fonts and the remote Unsplash photography.
+Open `index.html` in a modern browser; use the home-page **The menu** link to open `menu.html`. An internet connection is required for Google Fonts and remote Unsplash photography.
 
 ## Experience and features
 
 - Editorial café branding with a warm paper, forest-green, and terracotta palette
 - Responsive desktop, tablet, and mobile layouts
 - Mobile navigation with keyboard Escape support
-- Filterable menu cards with category buttons and accessible pressed states
+- Separate `menu.html` with 25 menu items, live search, and an expandable full-height category sidebar
+- Home-page featured dishes remain static; the dedicated menu page handles category browsing
+- Filterable featured menu cards with accessible pressed states
 - Photo-led hero, story, ambience, visit details, and footer
 - Reservation request form with native validation and an email-draft handoff
 - Scroll reveal animations, back-to-top control, and reduced-motion support
