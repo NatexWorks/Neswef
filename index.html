@@ -262,8 +262,8 @@
         <div class="field"><label for="occasion">What's the occasion?</label><select id="occasion" name="occasion"><option>Just a coffee</option><option>Catch-up with friends</option><option>Work or study</option><option>Celebration</option><option>Something else</option></select></div>
         <div class="field full"><label for="guestNote">Anything we should know? (optional)</label><textarea id="guestNote" name="note" placeholder="A little note for our team…"></textarea></div>
       </div>
-      <button class="btn" type="submit">Request a table <span class="arrow">↗</span></button>
-      <p class="form-note">Demo form: submitting opens your email app with the request details. A table is not confirmed until the café replies. Update the email address before publishing for customers.</p>
+      <button class="btn" type="submit">Request a table via WhatsApp <span class="arrow">↗</span></button>
+      <p class="form-note">WhatsApp will open with your table request ready. Press Send to deliver it. A table is not confirmed until the café replies.</p>
       <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
     </form>
   </div>
@@ -298,7 +298,33 @@
   const date=document.getElementById('visitDate');const now=new Date();const localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);date.min=localDate;
   document.getElementById('year').textContent=new Date().getFullYear();
   const back=document.getElementById('backTop');const mainNav=document.querySelector('.nav');const updateScrollUI=()=>{back.classList.toggle('visible',window.scrollY>550);mainNav.classList.toggle('scrolled',window.scrollY>12)};window.addEventListener('scroll',updateScrollUI,{passive:true});updateScrollUI();back.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'}));
-  document.getElementById('bookingForm').addEventListener('submit',function(e){e.preventDefault();if(!this.reportValidity())return;const data=new FormData(this);const lines=['Hello Neswef team,','', 'I would like to request a table.','Name: '+data.get('name'),'Email: '+data.get('email'),'Date: '+data.get('date'),'Time: '+data.get('time'),'Guests: '+data.get('guests'),'Occasion: '+data.get('occasion'),'Note: '+(data.get('note')||'None'),'','Please confirm availability.'];const address='hello@neswef.example';const status=document.getElementById('formStatus');status.textContent='Your email app will open with the request prepared. Replace hello@neswef.example in the website code with the café’s real email before accepting customer enquiries.';status.classList.add('show');window.location.href='mailto:'+address+'?subject='+encodeURIComponent('Neswef table request — '+data.get('date'))+'&body='+encodeURIComponent(lines.join('\n'))});
+  document.getElementById('bookingForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!this.reportValidity())return;
+
+    const data=new FormData(this);
+    const lines=[
+      'NEW TABLE REQUEST — NESWEF CAFÉ',
+      '',
+      'Customer: '+data.get('name'),
+      'Email: '+data.get('email'),
+      '',
+      'Date: '+data.get('date'),
+      'Time: '+data.get('time'),
+      'Guests: '+data.get('guests'),
+      'Occasion: '+data.get('occasion'),
+      'Note: '+(data.get('note')||'None'),
+      '',
+      'Please check availability and contact the customer to confirm.'
+    ];
+
+    const whatsappNumber='918178470409';
+    const whatsappUrl='https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent(lines.join('\n'));
+    const status=document.getElementById('formStatus');
+    status.textContent='WhatsApp is opening with your table request prepared. Press Send in WhatsApp to deliver it. Your table is not confirmed until the café replies.';
+    status.classList.add('show');
+    window.location.href=whatsappUrl;
+  });
 })();
 </script>
 </body>
